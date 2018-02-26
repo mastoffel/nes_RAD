@@ -30,11 +30,9 @@ system("grep -v '#' data/nes_rad.vcf | wc -l")
 #~~~~~~~~~~~~~~~~~~~~~~#
 # 80% geno  # maf 0.05
 #~~~~~~~~~~~~~~~~~~~~~~# 
-system("vcftools --vcf data/nes_rad.vcf --out data/inbreeding/nes_filtered --min-meanDP 10 --max-meanDP 20 --minDP 10 --maxDP 30 --max-missing 0.05 --remove-indels --maf 0.01 --min-alleles 2 --max-alleles 2 --recode --recode-INFO-all")
-
+system("/home/martin/bin/vcftools --vcf data/nes_rad.vcf --out data/inbreeding/nes_filtered --min-meanDP 10 --max-meanDP 20 --minDP 10 --maxDP 30 --max-missing 0.05 --remove-indels --maf 0.01 --min-alleles 2 --max-alleles 2 --recode --recode-INFO-all")
 
 system("grep -v '#' data/inbreeding/nes_filtered.recode.vcf | wc -l")
-
 
 
 

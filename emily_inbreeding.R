@@ -57,7 +57,6 @@ system("vcftools --vcf data/inbreeding/GQ_DP.recode.vcf --plink --out data/inbre
 
 #
 
-
 # recode and reorder bim
 system("scripts/recode_full_map.sh data/inbreeding/GQ_DP_maf05_g30.map data/inbreeding/GQ_DP_maf05_g30.map")
 system("plink --file data/inbreeding/GQ_DP_maf05_g30 --make-bed --out data/inbreeding/GQ_DP_maf05_g30 --allow-extra-chr")

@@ -62,7 +62,6 @@ system("plink --file data/inbreeding/relatedness --make-bed --out data/inbreedin
 #~~ Get Fhats
 
 # recode bim files for GCTA
-
 recode_bim_1chr <- function(file){
   file <- fread(file) %>%
     mutate(V1 = 1) %>%
