@@ -3,5 +3,8 @@
 .RData
 .Ruserdata
 data/
+Results/
 fastsimcoal_analyses/
 ngsF_runs/
+nes_RAD.Rproj
+nohup.out

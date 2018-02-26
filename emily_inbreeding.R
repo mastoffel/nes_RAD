@@ -294,7 +294,11 @@ plink_files <- paste("data/inbreeding/", list.files(path = "data/inbreeding", pa
 plink_files <- lapply(plink_files, function(x) gsub(".ped", "", x))
 
 for (i in 1:length(plink_files)){
+
+  #system(paste0("~/programs/gcta64 --bfile ", plink_files[i]," --autosome --ibc --out ", plink_files[i]," --thread-num 10"))
+
   system(paste0("gcta64 --bfile ", plink_files[i]," --autosome --ibc --out ", plink_files[i]," --thread-num 10"))
+
 }
 
 # load fhats
@@ -302,6 +306,8 @@ for (i in 1:length(plink_files)){
 load_fhats <- function(file) {
   
   fhats <- fread(file, header = T) %>%
+    filter(grepl("^AG", IID)) %>%
+    mutate(Animal = ifelse(grepl("^AGP", IID), "Pup", "Adult"))
     # filter(grepl("^AG", IID)) %>%
     # mutate(Animal = ifelse(grepl("^AGP", IID), "Pup", "Adult"))
   
