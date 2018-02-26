@@ -19,7 +19,7 @@ run_fsc <- function(run_num, num_boot){
   # change to directory
   setwd(paste0("/home/martin/nes/nes_RAD/fastsimcoal_analyses/analyse_bootstrap_sfs/boot_", num_boot, "/fscrun", run_num))
   # run fsc
-  system("~/bin/fsc26 -t nes.tpl -n 10000 -m -e nes.est -M -L 40 -q -w 0.01 -x --foldedSFS -C 5 --nosingleton")
+  system("~/bin/fsc26 -t nes.tpl -n 1000 -m -e nes.est -M -L 40 -q -w 0.01 -x --foldedSFS -C 5 --nosingleton")
   # change back
   setwd(paste0("/home/martin/nes/nes_RAD/fastsimcoal_analyses/analyse_bootstrap_sfs/boot_", num_boot))
 }
@@ -32,7 +32,7 @@ for (num_boot in 1:nboot) {
   }
   setwd(paste0("/home/martin/nes/nes_RAD/fastsimcoal_analyses/analyse_bootstrap_sfs/boot_", num_boot))
   
-  cl <- makeCluster(getOption("cl.cores", 6))
+  cl <- makeCluster(getOption("cl.cores", 10))
   parLapply(cl, 1:10, run_fsc, num_boot)
   stopCluster(cl)
   
