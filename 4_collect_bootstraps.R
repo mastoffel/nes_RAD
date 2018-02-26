@@ -6,7 +6,7 @@ library(stringr)
 library(parallel)
 options(scipen=999)
 # how many bootstraps
-nboot <- 100
+nboot <- 40
 num_sims <- 10
 setwd("/home/martin/nes/nes_RAD")
 
