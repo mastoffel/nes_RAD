@@ -1,6 +1,27 @@
 # min ind 77
-sfs <- scan("../../demography/angsd/nes37.sfs")
-sfs2 <- scan("../../demography/angsd/nes39.sfs")
+sfs <- scan("../angsd_analysis/SFS40/nes40.sfs")
+sfs2 <- scan("../angsd_analysis/SFS38/nes38.sfs")
+sfs <- scan("../angsd_analysis/SFS37/nes37.sfs")
+
+sum(sfs[-1]) / sum(sfs)
+
+sfs_sim <- readLines("fastsimcoal_analyses/bootstrap_test/nes/nes_1/nes_MAFpop0.obs")
+sfs_sim <- as.numeric(unlist(str_split(sfs_sim[3], pattern = "\\\t")))[1:97]
+sfs2 <- sfs_sim
+plot(sfs[-c(1,2,3,4)], sfs_sim[-c(1,2,3,4)])
+cor(sfs[-c(1,2,3)], sfs_sim[-c(1,2,3)])
+
+barplot(sqrt(sfs[-1]))
+barplot(sqrt(sfs2[-1]))
+
+barplot(sfs[-c(1,2)])
+barplot(sfs2[-c(1,2)])
+barplot(sfs3[-c(1,2)])
+
+plot(sfs[-c(1,2,3)], sfs2[-c(1,2,3)])
+
+test <- unlist(sfs_sim[2, ])
+sfs2 <- scan("../angsd_analysis/nes39.sfs")
 plot(sfs[-1], sfs2[-1])
 plot(sfs[-c(1,2)], sfs2[-c(1,2)])
 plot(sfs[-c(1,2,3)], sfs2[-c(1,2,3)])

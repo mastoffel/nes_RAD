@@ -27,27 +27,28 @@ min_index <- which.min(all_vars_working$MaxEstLhood)
 folder_name <- folders[min_index]
 
 ### Parametric bootstrapping
+bootstrap_folder <- "/home/martin/nes/nes_RAD/fastsimcoal_analyses/bootstrap_test/"
 
 # (1) manipulate par_file
 par_file <- readLines(paste0("fastsimcoal_analyses/fsc_run/", folder_name, "/nes/nes_maxL.par"))
 # Number of sites in observed SFS: Number of lines in fasta file / 2 (roughly)
-num_sites <- 200000
+num_sites <- 2000000
 # new par_file
 loci_row <- which(str_detect(par_file, "Number of independent loci")) + 1
 datatype_row <- which(str_detect(par_file, "FREQ"))
 # replace loci
 par_file[loci_row] <- str_c(num_sites, " 0")
 # replace datatype
-par_file[datatype_row] <- "DNA 500 0  2.5e-8 OUTEXP"
+par_file[datatype_row] <- "DNA 1000 0  2.5e-8 OUTEXP"
 # write to new folder
-if (!dir.exists("/home/martin/nes/nes_RAD/fastsimcoal_analyses/bootstrap/")) {
-  system("mkdir /home/martin/nes/nes_RAD/fastsimcoal_analyses/bootstrap/")
+if (!dir.exists(bootstrap_folder)) {
+  system(paste0("mkdir ", bootstrap_folder)) 
 }
-writeLines(par_file, "/home/martin/nes/nes_RAD/fastsimcoal_analyses/bootstrap/nes.par")
+writeLines(par_file, paste0(bootstrap_folder, "nes.par"))
 
 # (2) create 100 SFS in the bootstrap folder
-setwd(paste0("/home/martin/nes/nes_RAD/fastsimcoal_analyses/bootstrap"))
-system(paste("fsc26 -i nes.par -n ", nboot, " -j -m -s0 -x -q", sep = ""))
+setwd(bootstrap_folder)
+system(paste("/home/martin/bin/fsc26 -i nes.par -n ", nboot, " -j -m -s0 -x -q", sep = ""))
 setwd(paste0("/home/martin/nes/nes_RAD"))
 
 

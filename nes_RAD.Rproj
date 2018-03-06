@@ -6,11 +6,7 @@ AlwaysSaveHistory: Default
 
 EnableCodeIndexing: Yes
 UseSpacesForTab: Yes
-<<<<<<< HEAD
-NumSpacesForTab: 4
-=======
 NumSpacesForTab: 2
->>>>>>> 5a43c190f01a6c9e76c6a3be464958052b13f149
 Encoding: UTF-8
 
 RnwWeave: Sweave

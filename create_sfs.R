@@ -1,4 +1,4 @@
-# create obs sfs for fastsimcoal
+# create folded obs sfs for fastsimcoal
 sfs <- scan("../../angsd_analysis/SFS25/nes25.sfs")
 
 # create names
