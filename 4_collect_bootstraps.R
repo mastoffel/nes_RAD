@@ -29,8 +29,9 @@ all_vars <- map2(folders_df$boot, folders_df$sims, possibly(collect_vars, NA_rea
 all_vars <- all_vars[!is.na(all_vars)]
 all_vars_working <- bind_rows(all_vars)
 
+
 library(readr)
-# write_delim(all_vars_working, path = "data/fsc_out/non_par_boot.txt", delim = " ")
+write_delim(all_vars_working, path = "data/fsc_out/nonpar_boot_talk.txt", delim = " ")
 hist(all_vars_working$NBOT, breaks = 100)
 
 par_ests <- all_vars_working %>% 

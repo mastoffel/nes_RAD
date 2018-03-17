@@ -96,7 +96,7 @@ get_g2_from_plinkraw <- function(file) {
 }
 # load(file = "data/inbreeding/nes_g2.rda")
 set.seed(102)
-nes_g2 <- get_g2_from_plinkraw(raw_files)
+# nes_g2 <- get_g2_from_plinkraw(raw_files)
 # save(nes_g2, file = "data/inbreeding/nes_g2.rda") # 7407 snps
 plot(nes_g2, col = "grey")
 nes_g2
@@ -182,7 +182,7 @@ require(gridExtra)
 library(sitools)
 cbPalette <- c( "#1B9E77", "#66A61E", "#E6AB02", "black", "#7570B3", "#D95F02", "#E7298A")
 library(forcats)
-png("figs/g2_boot.png", units = "in", res = 300, width = 6, height = 3)
+png("figs/g2_boot_comp.png", units = "in", res = 300, width = 6, height = 3)
 # remove F2 and F1
 ibcs_vars_summary <- ibcs_vars_summary %>% 
                         filter(!(var %in% c("Fhat1", "Fhat2", "Fhat3")))
@@ -199,6 +199,9 @@ g2_CI_plot <-
                  size = 0.5, color = "black", linetype = "solid", height = 0) +
   geom_vline(data = g2s_df, aes(xintercept = val, colour = var), size = 0.8,
              linetype = c("dashed", rep("solid", 4)), show.legend = T) +
+  # without lines
+  #geom_vline(data = g2s_df[1, ], aes(xintercept = val, colour = var), size = 0.8,
+  #           linetype = c("dashed"), show.legend = T) +
   scale_colour_manual(values = cbPalette, name = " ") +
   #                     breaks = c("g2", "sMLH"),
   #                     labels = c(expression(italic(g[2])),
@@ -216,8 +219,6 @@ g2_CI_plot <-
 
 g2_CI_plot
 dev.off()
-
-
 
 
 # get individual data
